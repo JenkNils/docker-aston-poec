@@ -146,6 +146,12 @@ ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
 docker build -t web-flask .
 docker run -d --name web -p 5000:5000 web-flask
 ```
+### Build context
+docker rmi 93641fba1066
+time docker build -t web-app-distro -f dockerfile-distroless .
+docker images
+docker rmi 4b961d0856dd
+time DOCKER_BUILDKIT=1 docker build -t web-app-distro -f dockerfile-distroless .
 
 ### Check metadata for security reason
 ```shell
